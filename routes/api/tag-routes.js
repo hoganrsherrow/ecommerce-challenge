@@ -61,6 +61,8 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+  console.log(req.body);
+  console.log(req.params.id);
   // update a tag's name by its `id` value
   Tag.update(req.body, {
     where: {
@@ -72,6 +74,7 @@ router.put('/:id', (req, res) => {
         res.status(404).json({ message: 'No tag found with this id' });
         return;
       }
+      res.json(dbTagData);
     })
     .catch(err => {
       console.log(err);
